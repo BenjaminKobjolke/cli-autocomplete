@@ -2,6 +2,8 @@
 
 A Python-based command-line tool that provides autocompletion for executing commands from configured directories with arguments from the current directory.
 
+![CLI Autocomplete Tool Demo](media/demo.gif)
+
 ## Features
 
 - Autocomplete commands from configured paths

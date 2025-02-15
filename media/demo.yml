@@ -1,0 +1,330 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: cmd.exe
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: E:\downloads\test
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 134
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 34
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box 
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+      type: solid
+      title: null
+      style:     
+          boxShadow: none
+          margin: 0px
+  
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 7096
+    content: "\e[?25l\e[2J\e[m\e[HMicrosoft Windows [Version 10.0.22621.4317]\r\n(c) Microsoft Corporation. All rights reserved.\e[4;1H\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe\a\e[?25h"
+  - delay: 1014
+    content: "\e[38;5;2m\e[53mXI\e[55mD\e[53mA\e[55m@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[38;5;8m\r\n$ "
+  - delay: 14
+    content: "\e[m"
+  - delay: 1485
+    content: d
+  - delay: 124
+    content: i
+  - delay: 94
+    content: r
+  - delay: 175
+    content: "\e[?25l\r\n Volume in drive E is SSDWorking\r\n Volume Serial Number is 0275-4478\e[9;1H Directory of E:\\downloads\\test\e[11;1H15.02.2025  14:03    <DIR>          .\r\n15.02.2025  13:52    <DIR>          ..\r\n15.02.2025  13:52         3.105.822 test.zip\r\n               1 File(s)      3.105.822 bytes\r\n               2 Dir(s)  2.484.532.678.656 bytes free\e[17;1H\e[?25h"
+  - delay: 1016
+    content: "\e[38;5;2m\e[53mXI\e[55mDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[38;5;8m\r\n$ "
+  - delay: 16
+    content: "\e[m"
+  - delay: 78
+    content: a
+  - delay: 110
+    content: u
+  - delay: 141
+    content: t
+  - delay: 78
+    content: o
+  - delay: 563
+    content: "\r\n\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe - auto\a"
+  - delay: 216
+    content: "\e[?12l"
+  - delay: 5
+    content: "\e[?2004h\e[?1l\e[?12l"
+  - delay: 18
+    content: "\e[?25l\e[HMicrosoft Windows [Version 10.0.22621.4317]\e[K\r\n(c) Microsoft Corporation. All rights reserved.\e[K\r\n\e[K\e[38;5;2m\e[53m\r\nXI\e[55mD\e[53mA\e[55m@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[K\e[38;5;8m\r\n$ \e[mdir\e[K\r\n Volume in drive E is SSDWorking\e[K\r\n Volume Serial Number is 0275-4478\e[K\r\n\e[K\r\n Directory of E:\\downloads\\test\e[K\r\n\e[K\r\n15.02.2025  14:03    <DIR>          .\e[K\r\n15.02.2025  13:52    <DIR>          ..\e[K\r\n15.02.2025  13:52         3.105.822 test.zip\e[K\r\n               1 File(s)      3.105.822 bytes\e[K\r\n               2 Dir(s)  2.484.532.678.656 bytes free\e[K\r\n\e[K\e[38;5;2m\e[53m\r\nXI\e[55mDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[K\e[38;5;8m\r\n$ \e[mauto\e[K\r\nEnter command from configured paths:\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\e[19;38H\e[?25h"
+  - delay: 720
+    content: "\e[?12l"
+  - delay: 24
+    content: "\e[?25le\e[38;2;0;0;0m\e[48;2;187;187;187m\n echo.bat\e[14X\e[48;2;68;68;68m\e[14C \e[48;2;187;187;187m\e[21;39H elevate.bat\e[11X\e[48;2;68;68;68m\e[11C \e[48;2;187;187;187m\e[22;39H extract_with_7zip.bat \e[48;2;68;68;68m \e[19;39H\e[?25h"
+  - delay: 14
+    content: "\e[m"
+  - delay: 205
+    content: "\e[?12l"
+  - delay: 17
+    content: "\e[?25lx\e[20;39H \e[38;2;0;0;0m\e[48;2;187;187;187m extract_with_7zip.bat \e[48;2;68;68;68m \e[m\e[21;2H\e[K\n\e[K\e[19;40H\e[?25h"
+  - delay: 195
+    content: "\e[?12l"
+  - delay: 24
+    content: "\e[?25lt\e[20;40H \e[38;2;0;0;0m\e[48;2;187;187;187m extract_with_7zip.bat \e[48;2;68;68;68m \e[19;41H\e[?25h"
+  - delay: 14
+    content: "\e[m"
+  - delay: 102
+    content: "\e[?12l"
+  - delay: 9
+    content: "\e[?25lr\e[20;41H \e[38;2;0;0;0m\e[48;2;187;187;187m extract_with_7zip.bat \e[48;2;68;68;68m \e[19;42H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 217
+    content: "\e[?12l"
+  - delay: 19
+    content: "\e[?25lact_with_7zip.bat\e[38;2;136;136;136m\e[48;2;255;255;255m\e[7m\e[20;42H extract_with_7zip.bat \e[19;59H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 461
+    content: "\e[?12l\e[?2004l\e[?2004h\e[?12l"
+  - delay: 20
+    content: "\e[?25l\rEnter command from configured paths: extract_with_7zip.bat\e[K\r\nEnter arguments from current directory:\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\e[20;41H\e[?25h"
+  - delay: 1368
+    content: "\e[?12l"
+  - delay: 20
+    content: "\e[?25lt\e[38;2;0;0;0m\e[48;2;187;187;187m\n test.zip \e[48;2;68;68;68m \e[20;42H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 92
+    content: "\e[?12l"
+  - delay: 18
+    content: "\e[?25le\e[21;42H \e[38;2;0;0;0m\e[48;2;187;187;187m test.zip \e[48;2;68;68;68m \e[20;43H\e[?25h"
+  - delay: 16
+    content: "\e[m"
+  - delay: 74
+    content: "\e[?12l"
+  - delay: 16
+    content: "\e[?12l\e[?25lst\e[21;43H  \e[38;2;0;0;0m\e[48;2;187;187;187m test.zip \e[48;2;68;68;68m \e[20;45H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 241
+    content: "\e[?12l"
+  - delay: 9
+    content: "\e[?25l.zip\e[38;2;136;136;136m\e[48;2;255;255;255m\e[7m\e[21;45H test.zip \e[20;49H\e[?25h"
+  - delay: 16
+    content: "\e[m"
+  - delay: 512
+    content: "\e[?12l\e[?2004l"
+  - delay: 22
+    content: "\e[?25l\rEnter arguments from current directory: test.zip\e[K\r\nExecuting: extract_with_7zip.bat test.zip\e[K\r\nProcessing: test.zip\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\e[23;1H\e[?25h"
+  - delay: 91
+    content: "\e[?25l\r\n7-Zip 24.09 (x64) : Copyright (c) 1999-2024 Igor Pavlov : 2024-11-29\e[26;1H\e[?25h"
+  - delay: 15
+    content: "\e[?25lScanning the drive for archives:\r\n1 file, 3105822 bytes (3034 KiB)\e[29;1HExtracting archive: test.zip\r\n\e[?25h--\r\nPath = test.zip\r\nType = zip\r\nPhysical Size = 3105822\r\n\nEverything is Ok\r\n\nFiles: 8\r\nSize:       3104772\r\nCompressed: 3105822\r"
+  - delay: 8
+    content: "\nPress any key to continue . . .\e[1C"
+  - delay: 1078
+    content: "\r\nCommand executed successfully\r"
+  - delay: 15
+    content: "\n\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe\a"
+  - delay: 1015
+    content: "\e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\r\e[?25l\e[m\n\e[53m\e[33;1H(v\e[55me\e[53mn\e[38;5;8m\e[55m\r\n$ \e[mdir\e[K\r\e[?25h\n Volume in drive E is SSDWorking\r\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe - dir\a\n Volume Serial Number is 0275-4478\r\n\n Directory of E:\\downloads\\test\r\n\n15.02.2025  14:04    <DIR>          .\r\n15.02.2025  13:52    <DIR>          ..\r\n15.02.2025  14:04    <DIR>          test\r\n15.02.2025  13:52         3.105.822 test.zip\r\n               1 File(s)      3.105.822 bytes\r\n               3 Dir(s)  2.484.529.565.696 bytes free\r\n\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe\a"
+  - delay: 1018
+    content: "\e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\r"
+  - delay: 16
+    content: "\e[?25l\e[m\n\e[53m\e[55m\e[7mn\e[38;5;8m\e[27m\r\n$ \e[md\e[K\e[?25h"
+  - delay: 859
+    content: i
+  - delay: 109
+    content: r
+  - delay: 137
+    content: "\r\n Volume in drive E is SSDWorking\r\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe - dir\a\n Volume Serial Number is 0275-4478\r\n\n Directory of E:\\downloads\\test\r\n\n15.02.2025  14:04    <DIR>          .\r\n15.02.2025  13:52    <DIR>          ..\r\n15.02.2025  14:04    <DIR>          test\r\n15.02.2025  13:52         3.105.822 test.zip\r\n               1 File(s)      3.105.822 bytes\r\n               3 Dir(s)  2.484.529.565.696 bytes free\r\n\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe\a"
+  - delay: 996
+    content: "\e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\r"
+  - delay: 15
+    content: "\e[?25l\e[m\n\e[53m\e[38;5;8m\e[55m\r\n$\e[1C\e[?25h"
+  - delay: 16
+    content: "\e[m"
+  - delay: 2106
+    content: a
+  - delay: 139
+    content: u
+  - delay: 79
+    content: t
+  - delay: 125
+    content: o
+  - delay: 1314
+    content: "\r"
+  - delay: 13
+    content: "\n\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe - auto\a"
+  - delay: 144
+    content: "\e[?12l\e[?2004h"
+  - delay: 9
+    content: "\e[?1l\e[?25l\e[HPress any key to continue . . .\e[K\r\nCommand executed successfully\e[K\r\n\e[K\e[53m\r\n(v\e[55me\e[53mn\e[55mv) \e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[K\e[38;5;8m\r\n$ \e[mdir\e[K\r\n Volume in drive E is SSDWorking\e[K\r\n Volume Serial Number is 0275-4478\e[K\r\n\e[K\r\n Directory of E:\\downloads\\test\e[K\r\n\e[K\r\n15.02.2025  14:04    <DIR>          .\e[K\r\n15.02.2025  13:52    <DIR>          ..\e[K\r\n15.02.2025  14:04    <DIR>          test\e[K\r\n15.02.2025  13:52         3.105.822 test.zip\e[K\r\n               1 File(s)      3.105.822 bytes\e[K\r\n               3 Dir(s)  2.484.529.565.696 bytes free\e[K\r\n\e[K\e[53m\r\n(ve\e[55m\e[7mn\e[27mv) \e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[K\e[38;5;8m\r\n$ \e[mdir\e[K\r\n Volume in drive E is SSDWorking\e[K\r\n Volume Serial Number is 0275-4478\e[K\r\n\e[K\r\n Directory of E:\\downloads\\test\e[K\r\n\e[K\r\n15.02.2025  14:04    <DIR>          .\e[K\r\n15.02.2025  13:52    <DIR>          ..\e[K\r\n15.02.2025  14:04    <DIR>          test\e[K\r\n15.02.2025  13:52         3.105.822 test.zip\e[K\r\n               1 File(s)      3.105.822 bytes\e[K\r\n               3 Dir(s)  2.484.529.565.696 bytes free\e[K\r\n\e[K\e[53m\r\n \e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\e[K\e[38;5;8m\r\n$ \e[mauto\e[K\r\nEnter command from configured paths:\e[K\e[98C\r\n\e[134C\r\n\e[134C\r\n\e[134C\r\n\e[134C\r\n\e[134C\r\n\e[134C\e[?12l\r\n\e[27;38H\e[?25h"
+  - delay: 2097
+    content: "\e[?12l"
+  - delay: 9
+    content: "\e[?25ld\e[38;2;0;0;0m\e[48;2;187;187;187m\n delete_folder.bat\e[13X\e[48;2;68;68;68m\e[13C \e[48;2;187;187;187m\e[29;39H disconnect_remote_desktop.bat \e[48;2;68;68;68m \e[48;2;187;187;187m\e[30;39H dummy_image.bat\e[15X\e[48;2;68;68;68m\e[15C \e[48;2;187;187;187m\e[31;39H dummy_image_5x.bat\e[12X\e[48;2;68;68;68m\e[12C \e[27;39H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 168
+    content: "\e[?12l"
+  - delay: 20
+    content: "\e[?25le\e[28;39H \e[38;2;0;0;0m\e[48;2;187;187;187m delete_folder.bat \e[48;2;68;68;68m \e[m\e[K\e[29;2H\e[K\n\e[K\n\e[K\e[27;40H\e[?25h"
+  - delay: 97
+    content: "\e[?12l"
+  - delay: 11
+    content: "\e[?25ll\e[28;40H \e[38;2;0;0;0m\e[48;2;187;187;187m delete_folder.bat \e[48;2;68;68;68m \e[27;41H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 48
+    content: "\e[?12l"
+  - delay: 15
+    content: "\e[?25le\e[28;41H \e[38;2;0;0;0m\e[48;2;187;187;187m delete_folder.bat \e[48;2;68;68;68m \e[27;42H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 215
+    content: "\e[?12l"
+  - delay: 21
+    content: "\e[?25lte_folder.bat\e[38;2;136;136;136m\e[48;2;255;255;255m\e[7m\e[28;42H delete_folder.bat \e[27;55H\e[?25h"
+  - delay: 16
+    content: "\e[m"
+  - delay: 588
+    content: "\e[?12l\e[?2004l\e[?2004h\rEnter command from configured paths: delete_folder.bat\e[K\r\nEnter arguments from current directory:\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\e[?25l\e[134C\e[?12l"
+  - delay: 5
+    content: "\r\n\e[27;41H\e[?25h"
+  - delay: 1754
+    content: "\e[?12l"
+  - delay: 11
+    content: "\e[?25ltest\e[38;2;0;0;0m\e[48;2;187;187;187m\n test     \e[48;2;68;68;68m \e[48;2;187;187;187m\e[29;45H test.zip \e[48;2;68;68;68m \e[27;45H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 893
+    content: "\e[?12l"
+  - delay: 18
+    content: "\e[?25l\e[38;2;136;136;136m\e[48;2;255;255;255m\e[7m\n test     \e[27;45H\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 801
+    content: "\e[?12l\e[?2004l"
+  - delay: 20
+    content: "\e[?25l\rEnter arguments from current directory: test\e[K\r\nExecuting: delete_folder.bat test\e[K\r\nPress 'c' to delete \"test\" or any other key to abort\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\r\n\e[K\e[30;1H\e[?25h"
+  - delay: 14
+    content: 'Do you want to proceed? '
+  - delay: 2264
+    content: "C\r\nDeletion of \"test\" successful.\r\nAll operations completed.\r\nPress any key to continue . . . "
+  - delay: 1022
+    content: "\r\nCommand failed with exit code 1\r"
+  - delay: 14
+    content: |+
+
+  - delay: 5
+    content: "\e]0;C:\\WINDOWS\\SYSTEM32\\cmd.exe\a"
+  - delay: 1008
+    content: "\e[38;5;2mXIDA@DESIGN13 \e[38;5;10mE:\\downloads\\test\r"
+  - delay: 16
+    content: "\e[?25l\e[m\n\e[53m\e[55mn\e[38;5;8m\r\n$\e[1C\e[?25h"
+  - delay: 15
+    content: "\e[m"
+  - delay: 206
+    content: e
+  - delay: 597
+    content: x
+  - delay: 127
+    content: i
+  - delay: 109
+    content: t
+  - delay: 145
+    content: "\r"
+  - delay: 12
+    content: |+
+
