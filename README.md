@@ -116,6 +116,67 @@ Enter command from configured paths: zip[TAB]
 zip_folder.bat    zip_files.bat    zip_archive.bat
 ```
 
+### Batch File Integration
+
+You can place various batch (.bat) files in your configured source paths to extend functionality. These batch files can perform tasks like:
+
+- Zipping files/folders
+- Unzipping archives
+- File conversions
+- Text processing
+- Any other command-line operations
+
+Example batch files:
+
+```bash
+zip_folder.bat     # Compress a folder into a zip archive
+unzip.bat         # Extract contents of a zip file
+convert_pdf.bat   # Convert documents to PDF
+rename_files.bat  # Batch rename files with patterns
+```
+
+You can find ready-to-use example scripts in the `example_scripts` folder of this repository. These scripts demonstrate common use cases and can serve as templates for creating your own batch files.
+
+To make these example scripts available for autocompletion, add the example_scripts directory to your configured paths:
+
+```bash
+auto --add "path\to\cli-autocomplete\example_scripts"
+```
+
+For example, if you cloned the repository to `D:\Projects\cli-autocomplete`, you would run:
+
+```bash
+auto --add "D:\Projects\cli-autocomplete\example_scripts"
+```
+
+The tool will automatically detect and make these batch files available for autocompletion, allowing you to quickly access and execute them with files from your current directory.
+
+#### Available Example Scripts
+
+The repository includes several example scripts that demonstrate common use cases:
+
+- `convert_h265_cpu.bat`: Converts video files to H.265 format using CPU encoding
+
+  - Takes video files as input
+  - Uses FFmpeg to convert to H.265 with good compression settings
+  - Renames original file with \_h264 suffix
+  - Creates new file with \_h265 suffix
+
+- `copy_file_name.bat`: Utility for quick filename copying
+
+  - Copies the input filename to the system clipboard
+  - Useful for quick file renaming workflows
+
+- `dummy_image.bat`: Downloads placeholder images for mockups/testing
+
+  - Downloads a random 1920x1080 image from picsum.photos
+  - Automatically numbers files (dummy_1.jpg, dummy_2.jpg, etc.)
+  - Perfect for testing image processing features
+
+- `echo.bat`: Simple echo utility for testing
+  - Displays the input argument
+  - Useful for testing command-line argument passing
+
 ## Features
 
 - Exact match validation with suggestions for partial matches
