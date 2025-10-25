@@ -50,6 +50,32 @@ After adding to PATH, you can run the tool from anywhere by simply typing:
 auto
 ```
 
+4. **Configure at least one script path** (required for first use):
+
+   The tool needs at least one configured path to search for scripts. You have several options:
+
+   **Option A: Add the example scripts (recommended for testing)**
+   ```bash
+   auto --add "D:\Projects\cli-autocomplete\example_scripts"
+   ```
+   Replace with your actual path to the cloned repository.
+
+   **Option B: Add your current directory**
+   ```bash
+   cd "C:\YourScriptsFolder"
+   auto --add .
+   ```
+
+   **Option C: Add any directory containing your scripts**
+   ```bash
+   auto --add "C:\Users\YourName\Scripts"
+   ```
+
+   Verify your configuration:
+   ```bash
+   auto --list
+   ```
+
 ## Usage
 
 ### Basic Usage
@@ -108,6 +134,10 @@ Configured paths:
 Add a new path:
 
 ```bash
+# Add current directory (quick shortcut)
+auto --add .
+
+# Or add any specific directory
 auto --add "C:\Scripts"
 ```
 

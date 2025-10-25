@@ -72,13 +72,17 @@ class CLIParser:
         
         # Handle --add argument
         if args.add:
+            original_input = args.add
             path = Path(args.add).resolve()
             if not path.exists():
                 self.logger.error(f"Path does not exist: {path}")
                 return args, False
-            
+
             if self.config_manager.add_path(str(path)):
-                self.logger.info(f"Added path: {path}")
+                if original_input == '.':
+                    self.logger.info(f"Added current directory: {path}")
+                else:
+                    self.logger.info(f"Added path: {path}")
             return args, False
         
         # Handle --delete argument
