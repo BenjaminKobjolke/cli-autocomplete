@@ -70,6 +70,9 @@ python clicomplete.py
 
 1. First prompt: Type and use TAB to autocomplete commands from configured paths
 2. Second prompt: Type and use TAB to autocomplete files from current directory
+   - Enter a file/folder name from the current directory
+   - Enter `/` or `.` to use the current directory path as the argument
+   - Press Enter with no input to run the command without arguments
 3. The tool executes the selected command with arguments
 
 Example:
@@ -79,6 +82,16 @@ auto
 Enter command from configured paths: zip_folder.bat
 Enter arguments from current directory: test.txt
 Executing: zip_folder.bat test.txt
+```
+
+Using current directory as argument:
+
+```bash
+auto
+Enter command from configured paths: process_folder.bat
+Enter arguments from current directory: /
+Using current directory: D:\Projects\MyFolder
+Executing: process_folder.bat D:\Projects\MyFolder
 ```
 
 ### Managing Paths

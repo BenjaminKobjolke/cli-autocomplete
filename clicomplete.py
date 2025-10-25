@@ -76,11 +76,17 @@ def main():
                 complete_in_thread=True,
                 complete_while_typing=True
             ).strip()
-            
+
             if not user_input:
                 arguments = ""  # Explicitly set empty string for no arguments
                 break
-                
+
+            # Check if user wants to use current directory
+            if user_input in ['/', '.']:
+                arguments = str(Path.cwd())
+                logger.info(f"Using current directory: {arguments}")
+                break
+
             # Get all possible completions for arguments
             class MockDocument:
                 def get_word_before_cursor(self):
