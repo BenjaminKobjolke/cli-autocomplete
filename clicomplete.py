@@ -23,7 +23,18 @@ def main():
     
     if not interactive_mode:
         return
-    
+
+    # Check if at least one path is configured
+    if not config_manager.get_paths():
+        logger.error("No paths configured. Please add at least one path to search for scripts.")
+        logger.info("")
+        logger.info("Quick start:")
+        logger.info("  auto --add .                    # Add current directory")
+        logger.info("  auto --add \"C:\\Your\\Scripts\"    # Add specific directory")
+        logger.info("")
+        logger.info("Then run 'auto --list' to verify your configuration.")
+        return
+
     try:
         # Create prompt session
         session = PromptSession()
