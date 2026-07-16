@@ -1,15 +1,36 @@
 @echo off
-echo Creating virtual environment...
-python -m venv venv
-
-echo Activating virtual environment...
-call venv\Scripts\activate.bat
-
-echo Installing requirements...
-pip install -r requirements.txt
-
-echo Installation complete!
+echo ========================================
+echo  Python Project - Initial Setup
+echo ========================================
 echo.
-echo Please add "%~dp0" to your Windows PATH to use 'auto' command from anywhere.
+
+:: Check if uv is installed
+where uv >nul 2>nul
+if %ERRORLEVEL% neq 0 (
+    echo ERROR: uv is not installed or not in PATH
+    echo Please install uv first: https://docs.astral.sh/uv/getting-started/installation/
+    pause
+    exit /b 1
+)
+
+echo [1/2] Creating virtual environment and installing dependencies...
+uv sync --all-extras
+if %ERRORLEVEL% neq 0 (
+    echo ERROR: Failed to sync dependencies
+    pause
+    exit /b 1
+)
+
+echo.
+echo [2/2] Running tests...
+uv run pytest tests/ -q
+if %ERRORLEVEL% neq 0 (
+    echo WARNING: Some tests failed
+)
+
+echo.
+echo ========================================
+echo  Setup complete!
+echo ========================================
 echo.
 pause

@@ -1,3 +1,3 @@
 @echo off
-call %~dp0\venv\Scripts\activate.bat
-python %~dp0\clicomplete.py %*
+:: Keep cwd — the tool completes arguments from the current directory.
+uv run --project "%~dp0." python "%~dp0clicomplete.py" %*
