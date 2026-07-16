@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
-import os
 import subprocess
 from pathlib import Path
-from prompt_toolkit import prompt, PromptSession
-from src.logger import Logger
-from src.config_manager import ConfigManager
+
+from prompt_toolkit import PromptSession
+
+from src.app_logger import AppLogger
 from src.cli_parser import CLIParser
+from src.config_manager import ConfigManager
 from src.path_completer import PathCompleter
+
 
 def main():
     """Main entry point for the CLI autocomplete tool."""
-    logger = Logger("Main")
+    logger = AppLogger("Main")
     config_manager = ConfigManager()
-    cli_parser = CLIParser()
-    
+    cli_parser = CLIParser(config_manager)
+
     # Clear any previous state
     command = None
     arguments = None
-    
+
     # Parse command line arguments
     args, interactive_mode = cli_parser.parse_args()
-    
+
     if not interactive_mode:
         return
 
@@ -30,15 +32,15 @@ def main():
         logger.info("")
         logger.info("Quick start:")
         logger.info("  auto --add .                    # Add current directory")
-        logger.info("  auto --add \"C:\\Your\\Scripts\"    # Add specific directory")
+        logger.info('  auto --add "C:\\Your\\Scripts"    # Add specific directory')
         logger.info("")
         logger.info("Then run 'auto --list' to verify your configuration.")
         return
 
     try:
         # Create prompt session
-        session = PromptSession()
-        
+        session: PromptSession[str] = PromptSession()
+
         # First prompt: complete from configured paths
         configured_completer = PathCompleter(config_manager, current_dir=False)
         while True:
@@ -50,17 +52,14 @@ def main():
                 complete_in_thread=True,
                 complete_while_typing=True,
             ).strip()
-            
+
             if not user_input:
                 logger.error("No command entered")
                 return
-                
+
             # Get all possible completions
-            class MockDocument:
-                def get_word_before_cursor(self):
-                    return user_input
-            completions = list(configured_completer.get_completions(MockDocument(), None))
-            
+            completions = configured_completer.get_completions_for(user_input)
+
             # Only accept exact matches
             exact_match = next((c for c in completions if c.text == user_input), None)
             if exact_match is None:
@@ -70,14 +69,14 @@ def main():
                     for c in completions:
                         logger.info(f"  - {c.text}")
                 continue
-                
+
             command = configured_completer.path_map.get(user_input)
-            if not Path(command).exists():
+            if command is None or not Path(command).exists():
                 logger.error(f"Command not found: {user_input}")
                 continue
-                
+
             break
-        
+
         # Second prompt: complete from current directory
         current_completer = PathCompleter(config_manager, current_dir=True)
         while True:
@@ -85,7 +84,7 @@ def main():
                 "Enter arguments from current directory: ",
                 completer=current_completer,
                 complete_in_thread=True,
-                complete_while_typing=True
+                complete_while_typing=True,
             ).strip()
 
             if not user_input:
@@ -93,17 +92,14 @@ def main():
                 break
 
             # Check if user wants to use current directory
-            if user_input in ['/', '.']:
+            if user_input in ["/", "."]:
                 arguments = str(Path.cwd())
                 logger.info(f"Using current directory: {arguments}")
                 break
 
             # Get all possible completions for arguments
-            class MockDocument:
-                def get_word_before_cursor(self):
-                    return user_input
-            completions = list(current_completer.get_completions(MockDocument(), None))
-            
+            completions = current_completer.get_completions_for(user_input)
+
             # Only accept exact matches
             exact_match = next((c for c in completions if c.text == user_input), None)
             if exact_match is None:
@@ -113,37 +109,34 @@ def main():
                     for c in completions:
                         logger.info(f"  - {c.text}")
                 continue
-                
+
             arguments = current_completer.path_map.get(user_input)
-            if not Path(arguments).exists():
+            if arguments is None or not Path(arguments).exists():
                 logger.error(f"File not found: {user_input}")
                 continue
-                
+
             break
-        
+
         # Construct and execute the command
+        assert command is not None and arguments is not None  # both loops break only when set
         display_command = f"{Path(command).name} {Path(arguments).name if arguments else ''}"
         full_command = f"{command} {arguments}" if arguments else command
         logger.info(f"Executing: {display_command}")
         logger.debug(f"Full command: {full_command}")
-        
+
         try:
-            result = subprocess.run(
-                full_command,
-                shell=True,
-                check=True,
-                stdin=None,
-                stdout=None,
-                stderr=None
+            subprocess.run(
+                full_command, shell=True, check=True, stdin=None, stdout=None, stderr=None
             )
             logger.info("Command executed successfully")
         except subprocess.CalledProcessError as e:
             logger.error(f"Command failed with exit code {e.returncode}")
-            
+
     except KeyboardInterrupt:
         logger.info("\nOperation cancelled by user")
     except Exception as e:
         logger.error(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
