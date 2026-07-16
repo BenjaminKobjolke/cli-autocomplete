@@ -15,7 +15,8 @@ A Python-based command-line tool that provides autocompletion for executing comm
 
 ## Requirements
 
-- Python 3.8 or higher
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) (manages Python and dependencies)
+- Python 3.11 or higher (installed automatically by uv)
 - Windows operating system
 
 ## Installation
@@ -235,11 +236,17 @@ The repository includes several example scripts that demonstrate common use case
 cli-autocomplete/
 ├── clicomplete.py (main script)
 ├── auto.bat (convenience wrapper)
-├── config.json (path configuration)
-├── requirements.txt (dependencies)
+├── start.bat (alias for auto.bat)
+├── config.json (path configuration, gitignored — see docs/CONFIG.md)
+├── config.json.example (committed template)
+├── pyproject.toml (project + dependencies, managed by uv)
+├── tools/
+│   ├── run_tests.bat (unit tests)
+│   └── run_integration_tests.bat (integration tests)
+├── tests/
 └── src/
     ├── __init__.py
-    ├── logger.py (logging functionality)
+    ├── app_logger.py (logging functionality)
     ├── config_manager.py (configuration management)
     ├── path_completer.py (autocompletion logic)
     └── cli_parser.py (argument parsing)
@@ -247,9 +254,10 @@ cli-autocomplete/
 
 ## Dependencies
 
+Managed by uv via `pyproject.toml` / `uv.lock`:
+
 - prompt_toolkit: For interactive command-line interface
-- pathlib: For path handling
-- Other standard Python libraries
+- Dev: pytest, ruff, mypy
 
 ## License
 
