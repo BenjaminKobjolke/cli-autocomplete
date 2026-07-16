@@ -1,4 +1,11 @@
 logs
 venv
+.venv
 config.json
-src/__pycache__
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.claude
+claude-plans
+tmp/commit_msg.tmp
