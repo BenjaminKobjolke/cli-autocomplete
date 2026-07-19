@@ -34,7 +34,27 @@ cd cli-autocomplete
 install.bat
 ```
 
-3. Add to Windows PATH:
+3. Make `auto` available everywhere:
+
+   **Easy way — let the tool install a launcher for you:**
+
+   ```bash
+   auto --install
+   ```
+
+   This lists the writable folders already on your PATH; pick one by number, or paste any
+   folder path. It writes an `auto.bat` launcher there (with the repo location baked in), so
+   `auto` works from any directory. Restart your shell afterward. You can also install to a
+   specific folder without the prompt:
+
+   ```bash
+   auto --install "C:\Tools\bin"
+   ```
+
+   If you paste a folder that isn't on your PATH, the tool installs the launcher anyway and
+   warns you to add that folder to PATH yourself.
+
+   **Manual way — add the repo directory to PATH:**
    - Open System Properties (Win + R, type `sysdm.cpl`)
    - Click "Environment Variables"
    - Under "System Variables", find and select "Path"
@@ -45,7 +65,7 @@ install.bat
    - Click "OK" on all windows
    - Restart any open command prompts
 
-After adding to PATH, you can run the tool from anywhere by simply typing:
+After either step, you can run the tool from anywhere by simply typing:
 
 ```bash
 auto

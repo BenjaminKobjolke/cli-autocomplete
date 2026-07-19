@@ -3,6 +3,11 @@ from pathlib import Path
 
 from .app_logger import AppLogger
 from .config_manager import ConfigManager
+from .installer import install_launcher, writable_path_dirs
+
+# argparse default for --install when the flag is absent; distinct from None (flag present,
+# no folder given) so we can tell "not requested" from "requested interactively".
+_INSTALL_NOT_REQUESTED = "__not_requested__"
 
 
 class CLIParser:
@@ -36,6 +41,18 @@ class CLIParser:
 
         parser.add_argument(
             "--delete", type=str, metavar="PATH", help="Remove a path from the configuration"
+        )
+
+        parser.add_argument(
+            "--install",
+            nargs="?",
+            const=None,
+            default=_INSTALL_NOT_REQUESTED,
+            metavar="FOLDER",
+            help=(
+                "Copy an 'auto.bat' launcher into a PATH folder so 'auto' works globally. "
+                "Pass a folder to install there directly, or omit it to pick interactively."
+            ),
         )
 
         parser.add_argument("filter", nargs="?", help="Initial filter for command completion")
@@ -98,5 +115,78 @@ class CLIParser:
                     self.logger.info(f"Removed path: {delete_target}")
             return args, False
 
+        # Handle --install argument
+        if args.install != _INSTALL_NOT_REQUESTED:
+            self._handle_install(args.install)
+            return args, False
+
         # No arguments provided, enter interactive mode
         return args, True
+
+    def _handle_install(self, folder: str | None) -> None:
+        """Install a global 'auto.bat' launcher into a PATH folder.
+
+        Args:
+            folder (Optional[str]): Target folder passed on the command line, or None to
+                choose interactively (pick a number from PATH, or paste a path).
+        """
+        repo_dir = Path(__file__).parent.parent
+
+        target = self._resolve_install_target(folder)
+        if target is None:
+            return
+
+        if not target.is_dir():
+            self.logger.error(f"Not a directory: {target}")
+            return
+
+        if target not in writable_path_dirs():
+            self.logger.warning(
+                f"'{target}' is not on your PATH. Add it to PATH, or pick a folder that "
+                "already is, for 'auto' to work globally."
+            )
+
+        launcher = target / "auto.bat"
+        if launcher.exists():
+            self.logger.info(f"Overwriting existing launcher: {launcher}")
+
+        try:
+            written = install_launcher(target, repo_dir)
+        except OSError as e:
+            self.logger.error(f"Install failed: {e}")
+            return
+
+        self.logger.info(f"Installed launcher: {written}")
+        self.logger.info("Restart your shell, then run 'auto' from anywhere.")
+
+    def _resolve_install_target(self, folder: str | None) -> Path | None:
+        """Resolve the install target from a CLI value or interactive selection.
+
+        Returns:
+            Optional[Path]: Chosen directory, or None if the user made no valid choice.
+        """
+        if folder is not None:
+            return Path(folder).expanduser().resolve()
+
+        dirs = writable_path_dirs()
+        if dirs:
+            self.logger.info("Writable folders on your PATH:")
+            for i, path in enumerate(dirs, 1):
+                self.logger.info(f"  {i}. {path}")
+        else:
+            self.logger.info("No writable PATH folders auto-detected; paste a folder path.")
+
+        reply = input("Pick a number, or paste a folder path: ").strip()
+        if not reply:
+            self.logger.error("No folder selected.")
+            return None
+
+        # Mirror --delete: a bare number selects from the list, anything else is a path.
+        if reply.isdigit():
+            index = int(reply)
+            if 1 <= index <= len(dirs):
+                return dirs[index - 1]
+            self.logger.error("Invalid number.")
+            return None
+
+        return Path(reply).expanduser().resolve()
